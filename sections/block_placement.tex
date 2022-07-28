@@ -1,0 +1,74 @@
+\section{代码块放置(Block Placement)}
+
+\begin{frame}
+    \frametitle{控制流图链剖分}
+
+    首先对CFG建立链剖分，建立的原则是，经常被执行的边被放在一起，形成一条链(Chain)。
+
+    一条链包含一个或多个基本块(BB)，并且每个路径都有一个优先级(priority)决定了他们在最终的代码布局中的情况。
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\textwidth]{images/hld.png}
+        \caption{\cite{unknown-author-2022}轻重链剖分，树上链剖分的一种}
+    \end{figure}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Kruskal ? Prim ?}
+
+    CFG没有树这么好的性质，CFG是一个有向图。构建链的方法是每次从边集合中选一条没有被选中的边（按照边的权重顺序），然后形成链状结构。
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.3\textwidth]{images/example_cfg.png}
+        \caption{CFG的一个例子\cite{cooper2011engineering}}
+    \end{figure}
+
+
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{CFG上的贪心启发式链剖分 (Greedy heuristic chain div on CFGs)}
+
+    \begin{algorithmic}
+        \State $E$ $\gets$ | edges |
+        \For{each block b}
+        \State make a degenerate chain, $d$, for $b$
+        \State priority($d$) $\gets$ $E$
+        \EndFor
+        \State $P \gets 0$
+        \For{each CFG edge $<x, y>, x \neq y$, in decreasing freq order}
+        \State $ t \gets $ priority($a$)
+        \State append $b$ onto $a$
+        \State priority($a$) $\gets$ $\min$ ($t$, priority($b$), $P$++)
+        \EndFor
+    \end{algorithmic}
+
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{CFG上的贪心启发式链剖分 (Greedy heuristic chain div on CFGs)}
+
+    \begin{columns}
+        \begin{column}{0.3\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=1.0\textwidth]{images/example_cfg.png}
+                \caption{CFG的一个例子\cite{cooper2011engineering}}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=1.0\textwidth]{images/greedy.png}
+                \caption{算法每个过程选择的边，和对应的边集}
+            \end{figure}
+        \end{column}
+    \end{columns}
+
+\end{frame}
