@@ -77,3 +77,54 @@ A brief explanation of the manner:
 \end{figure}
 
 \end{frame}
+\begin{frame}[fragile]
+    \frametitle{冷热代码分离 - 分离前}
+    冷热代码分离的核心思想是，将冷代码(如错误处理)分成一个独立的函数调用，从原过程(procedure)中分离，然后用一个函数调用语句代替冷代码，从而提高热代码的连续性、局部性。
+    \begin{columns}
+        \begin{column}{0.7\textwidth}
+            \begin{lstlisting}
+void foo(bool cond1, bool cond2) {
+    // hot path
+    if (cond1)
+        // cold code 1
+    //hot code
+    if (cond2)
+        // cold code 2
+}
+            \end{lstlisting}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{冷热代码分离 - 分离后的代码}
+    \begin{columns}
+        \begin{column}{1.0\textwidth}
+            \begin{lstlisting}
+void foo(bool cond1, bool cond2) {
+    // hot path
+    if (cond1)
+        cold1(); 
+    //hot code
+    if (cond2)
+        cold2(); 
+    }
+    
+    void cold1() __attribute__((noinline)) { // cold code 1 }
+    void cold2() __attribute__((noinline)) { // cold code 2 }
+            \end{lstlisting}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{冷热代码分离 - 图}
+这样做的好处是，热指令都会存在同一个cache line里，可以提高CPU前端数据结构的利用效率，例如I-cache 和 DSB-Cache
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.68\textwidth]{images/splitting.png}
+\caption{将冷代码过程转换为函数调用}
+    \end{figure}
+
+\end{frame}
