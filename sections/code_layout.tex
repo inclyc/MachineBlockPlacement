@@ -9,19 +9,18 @@
             \centering
             C Codes:
             \begin{lstlisting}
-if (a <= b)
+if (a < b)
     c = 1;\end{lstlisting}
         \end{column}
         \begin{column}{0.5\textwidth}
-            \begin{verbatim}
-; a is in rax
-; b is in rdx
-; c is in rcx
-cmp rax, rdx
-ja .label
-mov rcx, 1
-.label:
-            \end{verbatim}
+\begin{lstlisting}[language={[RISC-V]Assembler}]
+; a is in a0
+; b is in a1
+; c is in a2
+bge a0 a1 .LBB0_2
+j .LBB0_1
+li a2 1
+.LBB0_2:\end{lstlisting}
         \end{column}
     \end{columns}
 \end{frame}
