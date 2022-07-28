@@ -79,7 +79,7 @@
 
     \begin{algorithmic}
         \State $t$ $\gets$ chain headed by the CFG entry node
-        \State $WorkList$ $\gets$ $\lbrace(t, priority(t))\rbrace$ $ \qquad \Leftarrow$ Heap
+\State $WorkList$ $\gets$ $\lbrace(t, priority(t))\rbrace$ $ \qquad \Leftarrow$ Heap\cite{forsythe1964algorithms}
         \While{$WorkList \neq \emptyset$}
         \State remove a chian $c$ of lowest priority from $WorkList$
         \For{each block $x$ in $c$ in chain}
