@@ -36,3 +36,33 @@ mov rcx, 1
     \end{figure}
 
 \end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{基本块放置}
+
+    \begin{columns}
+        \begin{column}{0.3\textwidth}
+            \centering
+            C Codes:
+            \begin{lstlisting}
+// hot path
+if (cond)
+    coldFunc();
+// hot path again\end{lstlisting}
+        \end{column}
+        \begin{column}{0.65\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=1.\textwidth]{images/hot_cold_placement.jpg}
+                \caption{布局优化示例}
+            \end{figure}
+        \end{column}
+    \end{columns}
+    \begin{itemize}
+        \item 不进行分支跳转往往比跳转代价更低(maintain fall through)
+        \item 更好地利用 Cache ($\mu$op-cache) (局部性)
+    \end{itemize}
+
+\end{frame}
+
