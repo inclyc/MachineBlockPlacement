@@ -72,3 +72,49 @@
     \end{columns}
 
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{基于WorkList组合最终的代码布局(Code Layout)}
+
+    \begin{algorithmic}
+        \State $t$ $\gets$ chain headed by the CFG entry node
+        \State $WorkList$ $\gets$ $\lbrace(t, priority(t))\rbrace$ $ \qquad \Leftarrow$ Heap
+        \While{$WorkList \neq \emptyset$}
+        \State remove a chian $c$ of lowest priority from $WorkList$
+        \For{each block $x$ in $c$ in chain}
+        \State place $x$ and the end of assembly codes
+        \EndFor
+        \For{each block $x$ in $c$}
+        \For{each edge $<x, y$ where $y$ is unplaced}
+        \State $t \gets $ chain containing $<x, y>$
+        \If{$(t, priority(t)) \notin WorkList$}
+        $WorkList \gets WorkList \bigcup \lbrace (t, priority(t)) \rbrace$
+        \EndIf
+        \EndFor
+        \EndFor
+        \EndWhile
+    \end{algorithmic}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Example}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=1.0\textwidth]{images/greedy.png}
+                \caption{上一个过程形成的链}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=1.0\textwidth]{images/worklist.png}
+                \caption{生成最终的代码布局}
+            \end{figure}
+        \end{column}
+    \end{columns}
+\end{frame}
