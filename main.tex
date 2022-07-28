@@ -1,4 +1,5 @@
 \documentclass[UTF8]{ctexbeamer}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
 \usetheme{Madrid}
 \usecolortheme{beaver}
 \usepackage{graphicx}
@@ -10,10 +11,9 @@
 \renewcommand{\d}{\mathrm{d}}
 
 
-\title{运动目标检测}
-\subtitle{新概念成像与制导小组讨论}
-\author{龙英池 \& 冯思哲}
-\institute{HIT}
+\title{Machine Block Placement}
+\subtitle{code layout optimizations.}
+\author{龙英池}
 
 \input{section_pages.tex}
 \input{lst_style.tex}
@@ -22,9 +22,10 @@
 
 \begin{frame}
     \frametitle{目录}
-
+    
     \tableofcontents
 
 \end{frame}
-
+\input{sections/code_layout.tex}
+\input{sections/references.tex}
 \end{document}
