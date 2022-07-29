@@ -1,7 +1,23 @@
 \section{代码块放置(Block Placement)}
 
 \begin{frame}
-    \frametitle{控制流图链剖分}
+    \frametitle{从CFG到代码布局(Code Layout) - Extended-TSP}
+
+    控制流图(CFG)由若干基本块(Basic Blocks)组成，代码块放置的目标是让经常连在一起执行的基本块，在最终的代码布局(Code Layout)中放在一起，这样最直接的好处就是更好地利用 I-cache。
+
+    事实上这个问题直到2021年才被形式化，背后的数学问题是 Ext-TSP. 给定有向图 $G = (V, E)$，带有正边权 $w: E \rightarrow R^{+}$，一个不递增的单调代价函数 $f(\cdot)$，满足 $f(1) = 1$，$f(i) = 0, i > k$，$k$是一个问题相关的常量。
+
+    构建$V$的一个序列$d$，最优化
+
+    \begin{equation}
+        \sum_{(u, v) \in E} f(\left\lvert d_u - d_v \right\rvert) \cdot w(u, v)
+    \end{equation}
+
+    $d_u \in \lbrace 1, \dots, \left\lvert V \right\rvert \rbrace$，是$u$在序列中的位置。
+\end{frame}
+
+\begin{frame}
+    \frametitle{控制流图链剖分 - Pettis-Hansen}
 
     首先对CFG建立链剖分，建立的原则是，经常被执行的边被放在一起，形成一条链(Chain)。
 
@@ -17,7 +33,7 @@
 
 
 \begin{frame}[fragile]
-    \frametitle{Kruskal ? Prim ?}
+    \frametitle{Kruskal ? Prim ? - Pettis-Hansen}
 
     CFG没有树这么好的性质，CFG是一个有向图。构建链的方法是每次从边集合中选一条没有被选中的边（按照边的权重顺序），然后形成链状结构。
 
@@ -79,14 +95,14 @@
 
     \begin{algorithmic}
         \State $t$ $\gets$ chain headed by the CFG entry node
-\State $WorkList$ $\gets$ $\lbrace(t, priority(t))\rbrace$ $ \qquad \Leftarrow$ Heap\cite{forsythe1964algorithms}
+        \State $WorkList$ $\gets$ $\lbrace(t, priority(t))\rbrace$ $ \qquad \Leftarrow$ Heap\cite{forsythe1964algorithms}
         \While{$WorkList \neq \emptyset$}
         \State remove a chian $c$ of lowest priority from $WorkList$
         \For{each block $x$ in $c$ in chain}
         \State place $x$ and the end of assembly codes
         \EndFor
         \For{each block $x$ in $c$}
-            \For{each edge $<x, y>$ where $y$ is unplaced}
+        \For{each edge $<x, y>$ where $y$ is unplaced}
         \State $t \gets $ chain containing $<x, y>$
         \If{$(t, priority(t)) \notin WorkList$}
         $WorkList \gets WorkList \bigcup \lbrace (t, priority(t)) \rbrace$
