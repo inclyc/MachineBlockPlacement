@@ -13,7 +13,7 @@ if (a < b)
     c = 1;\end{lstlisting}
         \end{column}
         \begin{column}{0.5\textwidth}
-\begin{lstlisting}[language={[RISC-V]Assembler}]
+            \begin{lstlisting}[language={[RISC-V]Assembler}]
 ; a is in a0
 ; b is in a1
 ; c is in a2
@@ -38,7 +38,7 @@ li a2 1
 
 
 \begin{frame}[fragile]
-\frametitle{基本块放置 - Basic Block Placement}
+    \frametitle{基本块放置 - Basic Block Placement}
 
     \begin{columns}
         \begin{column}{0.3\textwidth}
@@ -66,16 +66,16 @@ if (cond)
 \end{frame}
 
 \begin{frame}
-\frametitle{基本块对齐 - Basic Block Alignment}
-\centering
-
-A brief explanation of the manner:
-
-\begin{figure}
+    \frametitle{基本块对齐 - Basic Block Alignment}
     \centering
-    \includegraphics[width=0.418\textwidth]{images/alignment.png}
-    \caption{基本块对齐}
-\end{figure}
+
+    A brief explanation of this manner:
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.418\textwidth]{images/alignment.png}
+        \caption{基本块对齐}
+    \end{figure}
 
 \end{frame}
 \begin{frame}[fragile]
@@ -121,11 +121,11 @@ void foo(bool cond1, bool cond2) {
 
 \begin{frame}
     \frametitle{冷热代码分离 - 图}
-这样做的好处是，热指令都会存在同一个cache line里，可以提高CPU前端数据结构的利用效率，例如I-cache 和 DSB-Cache
+    这样做的好处是，热指令都会存在同一个cache line里，可以提高CPU前端数据结构的利用效率，例如I-cache 和 DSB-Cache
     \begin{figure}
         \centering
         \includegraphics[width=0.63\textwidth]{images/splitting.png}
-\caption{将冷代码过程转换为函数调用}
+        \caption{将冷代码过程转换为函数调用}
     \end{figure}
 
 \end{frame}
