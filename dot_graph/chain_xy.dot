@@ -1,0 +1,14 @@
+digraph G {
+
+    subgraph cluster_1 {
+        node [style=filled, color=lightblue];
+        X1 -> X2 -> X3;
+        label = "Chain X";
+    }
+    
+    subgraph cluster_2 {
+        node [style=filled, color=lightblue];
+        Y;
+        label = "Chain Y";
+    }
+}
