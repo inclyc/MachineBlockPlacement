@@ -1,7 +1,7 @@
-\documentclass[UTF8]{ctexbeamer}
+\documentclass[aspectratio=169]{ctexbeamer}
 \setbeamertemplate{bibliography item}{\insertbiblabel}
 \usetheme{Madrid}
-\usecolortheme{beaver}
+\input{tuna_color.tex}
 \usepackage{graphicx}
 \usepackage{algpseudocode}
 \usepackage{float}
@@ -10,6 +10,10 @@
 \usepackage{mathtools}
 \usepackage{hyperref}
 \usepackage{url}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes}
 
 \renewcommand{\d}{\mathrm{d}}
 
@@ -19,16 +23,16 @@
 \author{龙英池}
 
 \input{section_pages.tex}
+\input{lst_riscv.tex}
 \input{lst_style.tex}
 \begin{document}
 \frame{\titlepage}
 
 \begin{frame}
-    \frametitle{目录}
-    
-    \tableofcontents
-
+\frametitle{目录}
+\tableofcontents
 \end{frame}
+
 \input{sections/code_layout.tex}
 \input{sections/block_placement.tex}
 \input{sections/llvm_placement.tex}
