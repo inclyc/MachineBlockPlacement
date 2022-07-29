@@ -16,15 +16,29 @@
     \begin{table}
         \begin{tabular}{ccc}
             \toprule
-            功能     & 实现                  & 源代码位置                                                                         \\
+            功能   & 实现                    & 源代码位置                                                                              \\
             \midrule
-            边权     & BlockFrequency        & \cite{llvmblockfreqinfoimpl2022}                                                   \\
-            块放置   & MachineBlockPlacement & buildCFGChains()\cite{llvmmachineblockplacement2022}                               \\
-            块对齐   & MachineBlockPlacement & alignBlocks()\cite{llvmmachineblockplacement2022}                                  \\
+            边权   & BlockFrequency        & \cite{llvmblockfreqinfoimpl2022}                                                   \\
+            块放置  & MachineBlockPlacement & buildCFGChains()\cite{llvmmachineblockplacement2022}                               \\
+            块对齐  & MachineBlockPlacement & alignBlocks()\cite{llvmmachineblockplacement2022}                                  \\
             分支分析 & RISCVInstrInfo        & analyzeBranch()\cite{llvmriscvinstrinfo2022}\cite{llvmriscvimplbranchanalysis2017} \\
             \bottomrule
         \end{tabular}
         \caption{各个功能的实现情况和所在的位置}
     \end{table}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{BOLT - Binary optimization and layout tool}
+
+    Facebook 在 2018 年开源了他们的二进制优化工具 -- BOLT\cite{facebook2018bolt}。这个仓库现在已经合并到 LLVM，可以在对编译后的二进制进行基本的重排，冷热代码分离等工作。
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\textwidth]{images/perf_improv_clang.png}
+        \caption{优化后的Clang}
+    \end{figure}
 
 \end{frame}
