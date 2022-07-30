@@ -2,7 +2,7 @@
 
 \begin{frame}[fragile]
     \frametitle{什么是代码布局}
-    指令连续地、有顺序地储存在内存中。LLVM中，这些优化过程抽象成控制流图中的基本块(Basic Block, BB)的排列方式。
+    指令连续地、有顺序地储存在内存中.LLVM中，这些优化过程抽象成控制流图中的基本块(Basic Block, BB)的排列方式.
 
     \begin{columns}
         \begin{column}{0.2\textwidth}
@@ -80,7 +80,7 @@ if (cond)
 \end{frame}
 \begin{frame}[fragile]
     \frametitle{冷热代码分离 - 分离前}
-    冷热代码分离的核心思想是，将冷代码(如错误处理)分成一个独立的函数调用，从原过程(procedure)中分离，然后用一个函数调用语句代替冷代码，从而提高热代码的连续性、局部性。
+    冷热代码分离的核心思想是，将冷代码(如错误处理)分成一个独立的函数调用，从原过程(procedure)中分离，然后用一个函数调用语句代替冷代码，从而提高热代码的连续性、局部性.
     \begin{columns}
         \begin{column}{0.7\textwidth}
             \begin{lstlisting}

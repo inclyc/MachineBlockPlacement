@@ -16,12 +16,12 @@
     \begin{table}
         \begin{tabular}{ccc}
             \toprule
-            功能   & 实现                    & 源代码位置                                                                              \\
+            功能   & 实现                    & 源代码位置                                                                         \\
             \midrule
-            边权   & BlockFrequency        & \cite{llvmblockfreqinfoimpl2022}                                                   \\
-            块放置  & MachineBlockPlacement & buildCFGChains()\cite{llvmmachineblockplacement2022}                               \\
-            块对齐  & MachineBlockPlacement & alignBlocks()\cite{llvmmachineblockplacement2022}                                  \\
-            分支分析 & RISCVInstrInfo        & analyzeBranch()\cite{llvmriscvinstrinfo2022}\cite{llvmriscvimplbranchanalysis2017} \\
+            边权   & BlockFrequency        & \cite{llvmblockfreqinfoimpl2022}                                              \\
+            块放置  & MachineBlockPlacement & buildCFGChains()\cite{llvmmachineblockplacement2022}                          \\
+            块对齐  & MachineBlockPlacement & alignBlocks()\cite{llvmmachineblockplacement2022}                             \\
+            分支分析 & RISCVInstrInfo        & analyzeBranch()\cite{llvmriscvinstrinfo2022, llvmriscvimplbranchanalysis2017} \\
             \bottomrule
         \end{tabular}
         \caption{各个功能的实现情况和所在的位置}
@@ -32,7 +32,7 @@
 \begin{frame}
     \frametitle{最开始的布局优化Pass - CodePlacementOptPass}
 
-    2009 年10月，此时 LLVM 大仓库还只有 clang、compiler-rt、llvm。这时 LLVM 的布局优化 Pass 还没有基于 Macine-IR，CodePlacementOptPass ($O(n^2)$) \cite{llvmcodeplacementopt2009}将一些循环尾部的，无条件跳转到循环首部(back-edges)的块，移动到循环的开头。
+    2009 年10月，此时 LLVM 大仓库还只有 clang、compiler-rt、llvm.这时 LLVM 的布局优化 Pass 还没有基于 Macine-IR，CodePlacementOptPass ($O(n^2)$) \cite{llvmcodeplacementopt2009}将一些循环尾部的，无条件跳转到循环首部(back-edges)的块，移动到循环的开头.
 
     \begin{figure}
         \centering
@@ -44,9 +44,21 @@
 
 
 \begin{frame}
+    \frametitle{Branch Probability Basic Block Placement - Pettis-Hansen}
+
+    2011年，基于分支概率的基本块被引入，Branch Probability Basic Block Placement 第一次全名出现在了LLVM中 \cite{llvmmachineblockplacementintro2011}.这个算法先把所有的 BB 形成若干链，然后基于强连通分量合并这些链，形成最终的layout.
+
+    然而这个算法很快被废弃，在11月完成了现在所看的版本的雏形，同时也是上面介绍给大家的版本 \cite{llvmmachineblockplacementimporve2011-1, llvmmachineblockplacementimporve2011-2}. 这个版本的算法递归地从循环中构建链，同时尽量保证 CFG 的拓扑序正确.
+
+
+    
+
+\end{frame}
+
+\begin{frame}
     \frametitle{LLVM 对 Pettis-Hansen 算法的改进}
 
-    2021年12月，MachineBlockPlacement 的基本功能有了新的改进。D113424\cite{llvmexttspbbl2021} 引入一个方案，来优化已经完成链剖分之后的，生成最终的代码布局的过程。
+    2021年12月，MachineBlockPlacement 的基本功能有了新的改进.D113424\cite{llvmexttspbbl2021} 引入一个方案，来优化已经完成链剖分之后的，生成最终的代码布局的过程.
 
     \begin{figure}
         \input{images/chain_xy.tex}
@@ -58,7 +70,7 @@
 \begin{frame}
     \frametitle{BOLT - Binary optimization and layout tool}
 
-    Facebook 在 2018 年开源了他们的二进制优化工具 -- BOLT\cite{facebook2018bolt}\cite{panchenko2019bolt}。这个仓库现在已经合并到 LLVM，可以在对编译后的二进制进行基本的重排，冷热代码分离等工作。
+    Facebook 在 2018 年开源了他们的二进制优化工具 -- BOLT\cite{facebook2018bolt, panchenko2019bolt}.这个仓库现在已经合并到 LLVM，可以在对编译后的二进制进行基本的重排，冷热代码分离等工作.
 
     \begin{figure}
         \centering
