@@ -46,12 +46,22 @@
 \begin{frame}
     \frametitle{Branch Probability Basic Block Placement - Pettis-Hansen}
 
-    2011年，基于分支概率的基本块被引入，Branch Probability Basic Block Placement 第一次全名出现在了LLVM中 \cite{llvmmachineblockplacementintro2011}.这个算法先把所有的 BB 形成若干链，然后基于强连通分量合并这些链，形成最终的layout.
+    2011 年，基于分支概率的基本块被引入，Branch Probability Basic Block Placement 第一次全名出现在了 LLVM 中 \cite{llvmmachineblockplacementintro2011}.这个算法先把所有的 BB 形成若干链，然后基于强连通分量合并这些链，形成最终的layout.
 
-    然而这个算法很快被废弃，在11月完成了现在所看的版本的雏形，同时也是上面介绍给大家的版本 \cite{llvmmachineblockplacementimporve2011-1, llvmmachineblockplacementimporve2011-2}. 这个版本的算法递归地从循环中构建链，同时尽量保证 CFG 的拓扑序正确.
+    这个算法很快被废弃，在 11 月完成了现在所看的版本的雏形，同时也是上面介绍给大家的版本 \cite{llvmmachineblockplacementimporve2011-1, llvmmachineblockplacementimporve2011-2}. 这个版本的算法递归地从循环中构建链，同时尽量保证 CFG 的拓扑序正确.
 
-
-    
+    \begin{table}
+        \begin{tabular}{ccc}
+            \toprule
+            版本                                            & 如何处理 Loop                                                         & 如何从 Chain 到最终布局            \\
+            \midrule
+            \cite{llvmmachineblockplacementintro2011}     & 无特殊处理                                                             & 强连通分量排序                    \\
+            \cite{llvmmachineblockplacementimporve2011-1} & 递归建立 Loop-Based Chains                                            & 逆后序遍历                      \\
+            \cite{llvmmachineblockplacementimporve2011-2} & 基于版本 \cite{llvmmachineblockplacementimporve2011-1} 多建立一个 WorkList & 整个函数视为一个``Loop''，只有一个Chain \\
+            \bottomrule
+        \end{tabular}
+        \caption{三个实现的区别}
+    \end{table}
 
 \end{frame}
 
