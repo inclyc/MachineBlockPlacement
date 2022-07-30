@@ -29,20 +29,6 @@
 
 \end{frame}
 
-
-\begin{frame}
-    \frametitle{BOLT - Binary optimization and layout tool}
-
-    Facebook 在 2018 年开源了他们的二进制优化工具 -- BOLT\cite{facebook2018bolt}\cite{panchenko2019bolt}。这个仓库现在已经合并到 LLVM，可以在对编译后的二进制进行基本的重排，冷热代码分离等工作。
-
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.6\textwidth]{images/perf_improv_clang.png}
-        \caption{优化后的Clang}
-    \end{figure}
-
-\end{frame}
-
 \begin{frame}
     \frametitle{最开始的布局优化Pass - CodePlacementOptPass}
 
@@ -65,6 +51,19 @@
     \begin{figure}
         \input{images/chain_xy.tex}
         \caption{需要合并的两个Chain示意}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{BOLT - Binary optimization and layout tool}
+
+    Facebook 在 2018 年开源了他们的二进制优化工具 -- BOLT\cite{facebook2018bolt}\cite{panchenko2019bolt}。这个仓库现在已经合并到 LLVM，可以在对编译后的二进制进行基本的重排，冷热代码分离等工作。
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\textwidth]{images/perf_improv_clang.png}
+        \caption{优化后的Clang}
     \end{figure}
 
 \end{frame}
