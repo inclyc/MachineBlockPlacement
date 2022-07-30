@@ -1,0 +1,15 @@
+digraph "CFG for 'slightly_more_involved' function" {
+	label="CFG for 'slightly_more_involved' function";
+
+	Node0x55c3b2fe2110 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#abc8fd70",label="{entry:\l  br label %loop\l}"];
+	Node0x55c3b2fe2110 -> Node0x55c3b2fe22a0;
+	Node0x55c3b2fe22a0 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{loop:                                             \l  call void @body()\l  %t0 = call i32 @get()\l  %t1 = icmp slt i32 %t0, 2\l  br i1 %t1, label %block_a, label %bb\l|{<s0>T|<s1>F}}"];
+	Node0x55c3b2fe22a0:s0 -> Node0x55c3b2fe27d0;
+	Node0x55c3b2fe22a0:s1 -> Node0x55c3b2fe28a0;
+	Node0x55c3b2fe28a0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#dc5d4a70",label="{bb:                                               \l  %t2 = call i32 @get()\l  %t3 = icmp slt i32 %t2, 99\l  br i1 %t3, label %exit, label %loop\l|{<s0>T|<s1>F}}"];
+	Node0x55c3b2fe28a0:s0 -> Node0x55c3b2fe2bf0;
+	Node0x55c3b2fe28a0:s1 -> Node0x55c3b2fe22a0;
+	Node0x55c3b2fe27d0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#dc5d4a70",label="{block_a:                                          \l  call void @bar99()\l  br label %loop\l}"];
+	Node0x55c3b2fe27d0 -> Node0x55c3b2fe22a0;
+	Node0x55c3b2fe2bf0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#abc8fd70",label="{exit:                                             \l  call void @exit()\l  ret void\l}"];
+}
