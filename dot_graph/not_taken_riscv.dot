@@ -1,0 +1,9 @@
+digraph "CFG for 'test_bcc_fallthrough_nottaken' function" {
+	label="CFG for 'test_bcc_fallthrough_nottaken' function";
+
+	Node0x5608a49f13e0 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{%0:\l  %tst = icmp eq i32 %in, 42\l  br i1 %tst, label %true, label %false, !prof !0\l|{<s0>T|<s1>F}}"];
+	Node0x5608a49f13e0:s0 -> Node0x5608a49f1520;
+	Node0x5608a49f13e0:s1 -> Node0x5608a49f1590;
+	Node0x5608a49f1520 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#c7d7f070",label="{true:                                             \l  call void @test_true()\l  ret void\l}"];
+	Node0x5608a49f1590 [shape=record,color="#b70d28ff", style=filled, fillcolor="#bb1b2c70",label="{false:                                            \l  call void @test_false()\l  ret void\l}"];
+}

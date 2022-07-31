@@ -1,0 +1,16 @@
+\section{RISC-V的支持情况}
+
+\begin{frame}
+    \frametitle{RISC-V 支持 Machine Block Placment}
+
+    各个 Target 需要实现 \{ analyze, insert, remove \}Branch等虚函数，RISC-V在 5 年前，D40808\cite{llvmriscvimplbranchanalysis2017}实现；两年前，D84833包含了一个间接分支实现 \cite{llvmriscvimplindirect2020}.
+
+    D40808\cite{llvmriscvimplbranchanalysis2017} 中的测试用例非常基础：
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\textwidth]{images/not_taken_riscv.png}
+        \caption{理想布局：\%0 $\rightarrow$ false $\rightarrow$ true}
+    \end{figure}
+
+\end{frame}
