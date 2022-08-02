@@ -1,0 +1,13 @@
+\begin{algorithmic}
+    \State $E$ $\gets$ | edges |
+    \For{each block b}
+    \State make a degenerate chain, $d$, for $b$
+    \State priority($d$) $\gets$ $E$
+    \EndFor
+    \State $P \gets 0$
+    \For{each CFG edge $<x, y>, x \neq y$, in decreasing freq order}
+    \State $ t \gets $ priority($a$)
+    \State append $b$ onto $a$
+    \State priority($a$) $\gets$ $\min$ ($t$, priority($b$), $P$++)
+    \EndFor
+\end{algorithmic}

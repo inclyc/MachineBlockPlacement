@@ -1,0 +1,28 @@
+\section{LLVM 中如何实现这个算法}
+
+
+\begin{frame}
+    \frametitle{TL; DR}
+    \input{sections/llvm/tldr.tex}
+\end{frame}
+
+\begin{frame}
+    \frametitle{最开始的布局优化Pass - CodePlacementOptPass}
+    \input{sections/llvm/cpop.tex}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Branch Probability Basic Block Placement - Pettis-Hansen}
+    \input{sections/llvm/pettis_hansen.tex}
+\end{frame}
+
+\begin{frame}
+    \frametitle{LLVM 对 Pettis-Hansen 算法的改进}
+    \input{sections/llvm/improvement.tex}
+\end{frame}
+
+\begin{frame}
+    \frametitle{BOLT - Binary optimization and layout tool}
+    \input{sections/llvm/bolt.tex}
+\end{frame}

@@ -1,0 +1,13 @@
+\begin{lstlisting}
+void foo(bool cond1, bool cond2) {
+// hot path
+if (cond1)
+    cold1(); 
+//hot code
+if (cond2)
+    cold2(); 
+}
+
+void cold1() __attribute__((noinline)) { // cold code 1 }
+void cold2() __attribute__((noinline)) { // cold code 2 }
+\end{lstlisting}

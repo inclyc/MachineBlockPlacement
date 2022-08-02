@@ -1,0 +1,19 @@
+
+\begin{algorithmic}
+    \State $t$ $\gets$ chain headed by the CFG entry node
+    \State $WorkList$ $\gets$ $\lbrace(t, priority(t))\rbrace$ $ \qquad \Leftarrow$ Heap\cite{forsythe1964algorithms}
+    \While{$WorkList \neq \emptyset$}
+    \State remove a chian $c$ of lowest priority from $WorkList$
+    \For{each block $x$ in $c$ in chain}
+    \State place $x$ and the end of assembly codes
+    \EndFor
+    \For{each block $x$ in $c$}
+    \For{each edge $<x, y>$ where $y$ is unplaced}
+    \State $t \gets $ chain containing $<x, y>$
+    \If{$(t, priority(t)) \notin WorkList$}
+    $WorkList \gets WorkList \bigcup \lbrace (t, priority(t)) \rbrace$
+    \EndIf
+    \EndFor
+    \EndFor
+    \EndWhile
+\end{algorithmic}

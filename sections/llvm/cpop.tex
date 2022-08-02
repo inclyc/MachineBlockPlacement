@@ -1,0 +1,7 @@
+2009 年10月，此时 LLVM 大仓库还只有 clang、compiler-rt、llvm.这时 LLVM 的布局优化 Pass 还没有基于 Macine-IR，CodePlacementOptPass ($O(n^2)$) \cite{llvmcodeplacementopt2009}将一些循环尾部的，无条件跳转到循环首部(back-edges)的块，移动到循环的开头.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.25\textwidth]{images/slightly_more_involved.png}
+    \caption{block\_a可以被提到循环的开头}
+\end{figure}

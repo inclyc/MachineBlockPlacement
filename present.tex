@@ -2,18 +2,8 @@
 \setbeamertemplate{bibliography item}{\insertbiblabel}
 \usetheme{Madrid}
 \input{tuna_color.tex}
-\usepackage{graphicx}
-\usepackage{algpseudocode}
-\usepackage{float}
-\usepackage{listings}
-\usepackage{booktabs}
-\usepackage{mathtools}
-\usepackage{hyperref}
+\input{common_header.tex}
 \usepackage{url}
-\usepackage{tikz}
-\usetikzlibrary{calc}
-\usetikzlibrary{arrows}
-\usetikzlibrary{shapes}
 
 \renewcommand{\d}{\mathrm{d}}
 
@@ -33,9 +23,9 @@
     \tableofcontents
 \end{frame}
 
-\input{sections/layout.tex}
-\input{sections/placement.tex}
-\input{sections/llvm.tex}
-\input{sections/riscv.tex}
-\input{sections/references.tex}
+\input{sections/present/layout.tex}
+\input{sections/present/placement.tex}
+\input{sections/present/llvm.tex}
+\input{sections/present/riscv.tex}
+\input{sections/present/references.tex}
 \end{document}

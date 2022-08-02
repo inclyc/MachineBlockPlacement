@@ -1,0 +1,11 @@
+冷热代码分离的核心思想是，将冷代码(如错误处理)分成一个独立的函数调用，从原过程(procedure)中分离，然后用一个函数调用语句代替冷代码，从而提高热代码的连续性、局部性.
+\begin{lstlisting}
+void foo(bool cond1, bool cond2) {
+    // hot path
+    if (cond1)
+        // cold code 1
+    //hot code
+    if (cond2)
+        // cold code 2
+}
+\end{lstlisting}

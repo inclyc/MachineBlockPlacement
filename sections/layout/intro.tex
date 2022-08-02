@@ -1,0 +1,25 @@
+指令连续地、有顺序地储存在内存中.LLVM中，这些优化过程抽象成控制流图中的基本块(Basic Block, BB)的排列方式.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.2\textwidth}
+        \centering
+        \begin{lstlisting}
+if (a < b)
+    c = 1;\end{lstlisting}
+        \caption{C}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.2\textwidth}
+        \centering
+        \begin{lstlisting}[language={[RISC-V]Assembler}]
+; a is in a0
+; b is in a1
+; c is in a2
+bge a0 a1 .LBB0_2
+j .LBB0_1
+li a2 1
+.LBB0_2:\end{lstlisting}
+        \caption{asm}
+    \end{subfigure}
+    \caption{源代码翻译为汇编}
+\end{figure}

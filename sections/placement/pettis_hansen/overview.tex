@@ -1,0 +1,9 @@
+首先对CFG建立链剖分，建立的原则是，经常被执行的边被放在一起，形成一条链(Chain).
+
+一条链包含一个或多个基本块(BB)，并且每个路径都有一个优先级(priority)决定了他们在最终的代码布局中的情况.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.64\textwidth]{images/hld.png}
+    \caption{\cite{unknown-author-2022}轻重链剖分，树上链剖分的一种}
+\end{figure}
