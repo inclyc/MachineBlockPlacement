@@ -5,7 +5,7 @@
 
     控制流图(CFG)由若干基本块(Basic Blocks)组成，代码块放置的目标是让经常连在一起执行的基本块，在最终的代码布局(Code Layout)中放在一起，这样最直接的好处就是更好地利用 I-cache.
 
-    事实上这个问题直到2021年才被形式化，背后的数学问题是 Ext-TSP \cite{mestre2021extended}. 给定有向图 $G = (V, E)$，带有正边权 $w: E \rightarrow R^{+}$，一个不递增的单调代价函数 $f(\cdot)$，满足 $f(1) = 1$，$f(i) = 0, i > k$，$k$是一个问题相关的常量.
+    事实上这个问题直到2021年才被形式化，背后的数学问题是 Ext-TSP \cite{mestre2021extended}. 给定无向图 $G = (V, E)$，带有正边权 $w: E \rightarrow R^{+}$，一个不递增的单调代价函数 $f(\cdot)$，满足 $f(1) = 1$，$f(i) = 0, i > k$，$k$是一个问题相关的常量.
 
     构建$V$的一个序列$d$，最优化
 
@@ -48,7 +48,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{CFG上的贪心启发式链剖分 (Greedy heuristic chain decomposition on CFGs)}
+    \frametitle{Greedy heuristic chain decomposition on CFGs}
 
     \begin{algorithmic}
         \State $E$ $\gets$ | edges |
@@ -68,7 +68,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{CFG上的贪心启发式链剖分 (Greedy heuristic chain decomposition on CFGs)}
+    \frametitle{Greedy heuristic chain decomposition on CFGs}
 
     \begin{columns}
         \begin{column}{0.3\textwidth}
